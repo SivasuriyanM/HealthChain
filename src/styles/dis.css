@@ -1,0 +1,38 @@
+.dout{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    background-color: white;;
+} 
+
+label{
+    margin: 10px;   
+}
+input{
+    border-radius: 10vb;
+    width: 200px;
+    height: 20px;
+    
+}
+
+button{
+    margin-top: 10px;
+    border-radius: 10vb;
+    width: 150px;
+    height: 50px;
+    color: azure;
+    background-color: darkslategray;
+    justify-content: center;
+}
+
+.td{
+    font-size: large;
+    padding: 20px 200px ;
+}
+
+.tds{
+    font-size: large;
+    padding: 10px 28% ;
+    width:600px ;
+}

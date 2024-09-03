@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import React, { useContext } from "react";
-import { AppContext } from "../context";
+import { FetchChain } from "../Context/context";
+
 import "../styles/dis.css";
 
 const FetchDoc = () => {
-  const contData = useContext(AppContext);
+  const contData = useContext(FetchChain);
   const [dets, setDet] = useState([]);
   const { contract } = contData.state;
   const [editProfile, setEditProfile] = useState(false);
@@ -15,27 +16,26 @@ const FetchDoc = () => {
     };
     contract && detail();
   });
-  const goto =  () => {
-    setEditProfile(true)
+  const goto = () => {
+    setEditProfile(true);
   };
   const display = async (event) => {
     event.preventDefault();
-    const {contract} = contData.state;
-    const name = document.querySelector('#name').value;
-    
-    const gen = document.querySelector('#gender').value;
-    const hn = document.querySelector('#hn').value;
-    const ph = document.querySelector('#ph').value;
-    const qa = document.querySelector('#qa').value;
-    const sp = document.querySelector('#sp').value;
-    
-    
-    console.log("Check" +contract)
+    const { contract } = contData.state;
+    const name = document.querySelector("#name").value;
+
+    const gen = document.querySelector("#gender").value;
+    const hn = document.querySelector("#hn").value;
+    const ph = document.querySelector("#ph").value;
+    const qa = document.querySelector("#qa").value;
+    const sp = document.querySelector("#sp").value;
+
+    console.log("Check" + contract);
     const transaction = await contract.editDoctor(1, name, gen, sp, hn, ph, qa);
     await transaction.wait();
-    console.log("Doctor Registed")
-    setEditProfile(false)
-}
+    console.log("Doctor Registed");
+    setEditProfile(false);
+  };
   console.log(dets);
   return (
     <>
@@ -90,8 +90,12 @@ const FetchDoc = () => {
                 <hr />
               </table>
             </div>
-            <button  className="body-btn" onClick={()=>setEditProfile(false)}>Cancel</button>
-            <button  type="submit" className="body-btn">Submit</button>
+            <button className="body-btn" onClick={() => setEditProfile(false)}>
+              Cancel
+            </button>
+            <button type="submit" className="body-btn">
+              Submit
+            </button>
           </form>
         </div>
       ) : (
@@ -145,7 +149,9 @@ const FetchDoc = () => {
               </tc>
             </tbody>
           </table>
-          <button  className="body-btn" onClick={goto}>Edit Info</button>
+          <button className="body-btn" onClick={goto}>
+            Edit Info
+          </button>
         </div>
       )}
     </>

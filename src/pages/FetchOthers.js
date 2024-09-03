@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import { useState, useEffect } from "react";
-import { AppContext } from "../context";
+import { FetchChain } from "../Context/context";
 
-const FetchOthers = (props) => {
-  const contData = useContext(AppContext);
+const FetchOthers = () => {
+  const contData = useContext(FetchChain);
   const [dets, setDet] = useState([]);
   const [dia, setDia] = useState([]);
   const [hd, setHd] = useState([]);
   const [pa, setPa] = useState([]);
   const [pn, setPn] = useState([]);
   const [displayDetails, setDisplayDetails] = useState(false);
-  const [pataccad, setPataccad] = useState([]);
-  const [pataccnam, setPataccnam] = useState([]);
+
   const { contract } = contData.state;
   useEffect(() => {
     const detail = async () => {

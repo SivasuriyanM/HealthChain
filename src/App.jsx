@@ -1,8 +1,4 @@
-import { useState, useEffect } from "react";
-import { ethers } from "ethers";
-import abi from "./contract/Record.json";
-import { AppContext } from "./context";
-
+import { useState } from "react";
 import Fetch from "./pages/Fetch";
 import FetchDoc from "./pages/FetchDoc";
 import DocOthers from "./pages/DocOthers";
@@ -11,56 +7,15 @@ import FetchOthers from "./pages/FetchOthers";
 import Footer from "./components/Footer";
 import Logo from "./assets/HcLogo.jpg";
 import Reorder from "@mui/icons-material/ViewList";
-import "./App.css";
-import { Dashboard, Home } from "@mui/icons-material";
+import { FetchChain } from "./Context/context";
+import { Home } from "@mui/icons-material";
 import homeImage from "./assets/background.jpg";
+import "./App.css";
 
 function App() {
-  const [state, setState] = useState({
-    provider: null,
-    siginer: null,
-    contract: null,
-  });
-  const [account, setAccount] = useState("None");
-  useEffect(() => {
-    const connectWallet = async () => {
-      const contractAddress = "0x6006A04ABa557C552A5cA2A19f53a5A5bDaFC415";
-      const contractAbi = abi.abi;
-      try {
-        const { ethereum } = window;
-
-        if (ethereum) {
-          const account = await ethereum.request({
-            method: "eth_requestAccounts",
-          });
-
-          window.ethereum.on("chainChanged", () => {
-            window.location.reload();
-          });
-          window.ethereum.on("accountsChanged", () => {
-            window.location.reload();
-          });
-          const provider = new ethers.providers.Web3Provider(ethereum);
-          const siginer = provider.getSigner();
-          const contract = new ethers.Contract(
-            contractAddress,
-            contractAbi,
-            siginer
-          );
-          setAccount(account);
-          setState({ provider, siginer, contract });
-        } else {
-          alert("Please install metamask");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    connectWallet();
-  }, []);
+  const { state, account } = FetchChain();
   console.log(state);
   console.log(account);
-
   const [home, setHome] = useState(true);
   const [login, setLogin] = useState(false);
   const [patientLogin, setPatientLogin] = useState(false);
@@ -432,7 +387,7 @@ function App() {
       )}
 
       <div className="body-content">
-        <AppContext.Provider value={{ state, account }}>
+        <>
           <div className="content-wrapper">
             {home ? (
               <div className="home-content-wrapper">
@@ -733,7 +688,7 @@ function App() {
               ""
             )}
           </div>
-        </AppContext.Provider>
+        </>
       </div>
       <Footer />
     </div>

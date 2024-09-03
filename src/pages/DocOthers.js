@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FetchChain } from "../Context/context";
 import "../styles/dis.css";
 const DocOthers = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const [dets, setDet] = useState([]);
   const [da, setDa] = useState([]);
   const [dn, setDn] = useState([]);

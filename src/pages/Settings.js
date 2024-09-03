@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { FetchChain } from "../Context/context";
 
 function Settings() {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const { contract } = contData.state;
   const [pc, setPc] = useState([]);
 

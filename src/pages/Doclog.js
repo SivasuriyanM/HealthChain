@@ -3,7 +3,7 @@ import { FetchChain } from "../Context/context";
 import "../styles/patlog.css";
 
 const Doclog = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const display = async (event) => {
     event.preventDefault();
     const { contract } = contData.state;

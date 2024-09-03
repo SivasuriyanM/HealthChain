@@ -4,7 +4,7 @@ import { FetchChain } from "../Context/context";
 import "../styles/reg.css";
 
 const EditDetail = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
 
   const display = async (event) => {
     event.preventDefault();

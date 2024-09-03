@@ -5,7 +5,7 @@ import { FetchChain } from "../Context/context";
 import "../styles/dis.css";
 
 const FetchDoc = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const [dets, setDet] = useState([]);
   const { contract } = contData.state;
   const [editProfile, setEditProfile] = useState(false);

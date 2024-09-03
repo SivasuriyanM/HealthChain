@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { FetchChain } from "../Context/context";
 
 const EditDiabetes = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
 
   const display = async (event) => {
     event.preventDefault();

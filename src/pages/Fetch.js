@@ -6,7 +6,7 @@ import "../styles/dis.css";
 
 const Fetch = (props) => {
   const [editProfile, setEditProfile] = useState(false);
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const [dets, setDet] = useState([]);
   const { contract } = contData.state;
   useEffect(() => {

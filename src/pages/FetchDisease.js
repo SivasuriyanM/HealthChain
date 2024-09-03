@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FetchChain } from "../Context/context";
 
 const FetchDisease = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const [dia, setDia] = useState([]);
   const [hd, setHd] = useState([]);
   const { contract } = contData.state;

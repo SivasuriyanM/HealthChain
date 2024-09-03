@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import React, { useContext } from "react";
+import React from "react";
 import { FetchChain } from "../Context/context";
 
 import "../styles/dis.css";

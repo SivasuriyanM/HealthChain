@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FetchChain } from "../Context/context";
 
-const GetHD = () => {
+const EditHd = () => {
   const contData = FetchChain();
 
   const display = async (event) => {
@@ -16,7 +16,7 @@ const GetHD = () => {
     const eia = document.querySelector("#eia").value;
     const thal = document.querySelector("#thal").value;
     console.log(cp, rbp, mhra, sc, fbs, recg, eia, thal);
-    const transaction = await contract.setHeartDisease(
+    const transaction = await contract.editHeartDisease(
       cp,
       rbp,
       mhra,
@@ -31,31 +31,11 @@ const GetHD = () => {
   };
   return (
     <>
-      {/* {console.log(contData)}
-    <form onSubmit={display}>
-        <label>Chest-pain type</label>
-        <input type='text' id='cp' ></input>
-        <label>Resting Blood Pressure</label>
-        <input type='text' id='rbp' ></input>
-        <label>Max heart rate achieved</label>
-        <input type='text' id='mhra' ></input>
-        <label>Serum Cholestrol</label>
-        <input type='text' id='sc' ></input>
-        <label>Fasting Blood Sugar</label>
-        <input type='text' id='fbs' ></input>
-        <label>Resting ECG</label>
-        <input type='text' id='recg' ></input>
-        <label>Exercise induced angina </label>
-        <input type='text' id='eia' ></input>
-        <label>Thalassemia </label>
-        <input type='text' id='thal' ></input>
-        <button type='submit'>Submit</button>
-    </form> */}
       <div className="rout">
         <form onSubmit={display}>
           <div className="inner">
             <table>
-              <h2>Record Entry</h2>
+              <h2>Update Record</h2>
               <hr />
               <tc>
                 <tr>
@@ -118,4 +98,5 @@ const GetHD = () => {
     </>
   );
 };
-export default GetHD;
+
+export default EditHd;

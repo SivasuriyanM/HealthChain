@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import { FetchChain } from "../Context/context";
 
 const FetchOthers = () => {
-  const contData = useContext(FetchChain);
+  const contData = FetchChain();
   const [dets, setDet] = useState([]);
   const [dia, setDia] = useState([]);
   const [hd, setHd] = useState([]);

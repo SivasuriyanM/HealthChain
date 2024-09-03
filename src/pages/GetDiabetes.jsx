@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FetchChain } from "../Context/context";
 
-const EditDiabetes = () => {
+const GetDiabetes = (props) => {
   const contData = FetchChain();
 
   const display = async (event) => {
@@ -15,7 +15,7 @@ const EditDiabetes = () => {
     const pre = document.querySelector("#pre").value;
     const dpf = document.querySelector("#dpf").value;
     console.log(gl, bp, st, ins, bmi, pre, dpf);
-    const transaction = await contract.editDiabetes(
+    const transaction = await contract.setDiabetes(
       pre,
       gl,
       bp,
@@ -33,7 +33,7 @@ const EditDiabetes = () => {
         <form onSubmit={display}>
           <div className="inner">
             <table>
-              <h2>Update Record </h2>
+              <h2>Record Entry</h2>
               <hr />
               <tc>
                 <tr>
@@ -61,6 +61,7 @@ const EditDiabetes = () => {
                   </div>
                 </tr>
               </tc>
+
               <tc>
                 <tr>
                   <div className="row">
@@ -93,4 +94,5 @@ const EditDiabetes = () => {
     </>
   );
 };
-export default EditDiabetes;
+
+export default GetDiabetes;

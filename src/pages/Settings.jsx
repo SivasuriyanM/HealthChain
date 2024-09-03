@@ -1,29 +1,28 @@
-import React, { useContext } from "react";
+import { useState, useEffect } from "react";
+import React from "react";
 import { FetchChain } from "../Context/context";
 
-function Other() {
+function Settings() {
   const contData = FetchChain();
   const { contract } = contData.state;
-  // const [pc, setPc] = useState([]);
+  const [pc, setPc] = useState([]);
 
-  //   useEffect(() => {
-  //     const detail = async () => {
-  //         const pc = await contract.getPatientCount();
-  //         setPc(pc);
-  //     };
-  //     contract && detail();
+  useEffect(() => {
+    const detail = async () => {
+      const pc = await contract.getPatientCount();
+      setPc(pc);
+    };
+    contract && detail();
+  }, [contract]);
+  const [dc, setDc] = useState([]);
 
-  //   }, [contract]);
-  //   const [dc, setDc] = useState([]);
-
-  //   useEffect(() => {
-  //     const detail = async () => {
-  //         const dc = await contract.getDoctorCount();
-  //         setDc(dc);
-  //     };
-  //     contract && detail();
-
-  //   }, [contract]);
+  useEffect(() => {
+    const detail = async () => {
+      const dc = await contract.getDoctorCount();
+      setDc(dc);
+    };
+    contract && detail();
+  }, [contract]);
 
   const giveAccess = async (event) => {
     event.preventDefault();
@@ -33,9 +32,9 @@ function Other() {
   };
   const removeAccess = async (event) => {
     event.preventDefault();
-    const add = document.querySelector("#addi").value;
-    const rA = await contract.removeAccess(add);
-    await rA.wait();
+    const add = document.querySelector("#add").value;
+    const gA = await contract.removeAccess(add);
+    await gA.wait();
   };
 
   return (
@@ -49,11 +48,11 @@ function Other() {
       <form onSubmit={removeAccess}>
         <p>remove Permission</p>
         <label>Address</label>
-        <input type="text" id="addi"></input>
+        <input type="text" id="add"></input>
         <button type="submit">Remove</button>
       </form>
     </>
   );
 }
 
-export default Other;
+export default Settings;

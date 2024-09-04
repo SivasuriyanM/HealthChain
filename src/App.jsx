@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 import { useState } from "react";
 import Fetch from "./pages/Fetch";
 import FetchDoc from "./pages/FetchDoc";
@@ -11,9 +12,25 @@ import { FetchChain } from "./Context/context";
 import { Home } from "@mui/icons-material";
 import homeImage from "./assets/background.jpg";
 import "./App.css";
+import Login from "./components/Login";
 
 function App() {
-  const { state, account } = FetchChain();
+  const { account, state, loginStatus } = FetchChain();
+  const { contract } = state;
+
+  const getPatientAdd = async () => {
+    return await contract.getPatientAcc();
+  };
+  const getPatientName = async () => {
+    return await contract.getPatientName();
+  };
+  const getDoctorAdd = async () => {
+    return await contract.getDoctorAccounts();
+  };
+  const getDoctorName = async () => {
+    return await contract.getDoctorName();
+  };
+
   console.log(state);
   console.log(account);
   const [home, setHome] = useState(true);
@@ -415,7 +432,6 @@ function App() {
             ) : (
               ""
             )}
-
             {patientsignUp ? (
               <div className="reg-content-wrapper">
                 <form onSubmit={display}>
@@ -516,72 +532,84 @@ function App() {
               ""
             )}
             {patientLogin ? (
-              <div className="reg-content-wrapper">
-                <form className="reg-form">
-                  <ul>
-                    <h2>Patient Login</h2>
+              // <div className="reg-content-wrapper">
+              //   <form className="reg-form">
+              //     <ul>
+              //       <h2>Patient Login</h2>
 
-                    <li>
-                      <label>Full Name</label>
-                      <input className="inp" id="name" type="text" />
-                    </li>
-                    <li>
-                      <label>Address</label>
-                      <input
-                        className="inp"
-                        id="add"
-                        type="password"
-                        placeholder="******************"
-                      />
-                    </li>
-                    <button
-                      className="body-btn"
-                      type="button"
-                      onClick={PatientLogin}
-                    >
-                      Login
-                    </button>
-                  </ul>
-                </form>
-              </div>
+              //       <li>
+              //         <label>Full Name</label>
+              //         <input className="inp" id="name" type="text" />
+              //       </li>
+              //       <li>
+              //         <label>Address</label>
+              //         <input
+              //           className="inp"
+              //           id="add"
+              //           type="password"
+              //           placeholder="******************"
+              //         />
+              //       </li>
+              //       <button
+              //         className="body-btn"
+              //         type="button"
+              //         onClick={PatientLogin}
+              //       >
+              //         Login
+              //       </button>
+              //     </ul>
+              //   </form>
+              // </div>
+              <Login
+                user={"Patient"}
+                nameFun={getPatientName}
+                addFun={getPatientAdd}
+              />
             ) : (
               ""
             )}
             {doctorLogin ? (
-              <div className="reg-content-wrapper">
-                <form className="reg-form">
-                  <ul>
-                    <h2>Doctor Login</h2>
+              // <div className="reg-content-wrapper">
+              //   <form className="reg-form">
+              //     <ul>
+              //       <h2>Doctor Login</h2>
 
-                    <li>
-                      <label>Full Name</label>
-                      <input className="inp" id="name" type="text" />
-                    </li>
-                    <li>
-                      <label>Address</label>
-                      <input
-                        className="inp"
-                        id="add"
-                        type="password"
-                        placeholder="******************"
-                      />
-                    </li>
-                    <button
-                      className="body-btn"
-                      type="button"
-                      onClick={DoctorLogin}
-                    >
-                      Login
-                    </button>
-                  </ul>
-                </form>
-              </div>
+              //       <li>
+              //         <label>Full Name</label>
+              //         <input className="inp" id="name" type="text" />
+              //       </li>
+              //       <li>
+              //         <label>Address</label>
+              //         <input
+              //           className="inp"
+              //           id="add"
+              //           type="password"
+              //           placeholder="******************"
+              //         />
+              //       </li>
+              //       <button
+              //         className="body-btn"
+              //         type="button"
+              //         onClick={DoctorLogin}
+              //       >
+              //         Login
+              //       </button>
+              //     </ul>
+              //   </form>
+              // </div>
+              <Login
+                user={"Doctor"}
+                nameFun={getDoctorName}
+                addFun={getDoctorAdd}
+              />
             ) : (
               ""
+              // eslint-disable-next-line react/jsx-no-comment-textnodes
             )}
-            {patientDashboard ? (
+
+            {loginStatus === "Patient" ? (
               <div className="">
-                {profile ? <Fetch /> : ""}
+                {/* {profile ? <Fetch /> : ""}
                 {dashboard ? (
                   <div>
                     <FetchDisease />
@@ -589,14 +617,16 @@ function App() {
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
+                /*patientDashboard*/
               </div>
             ) : (
               ""
             )}
-            {doctorDashboard ? (
+
+            {loginStatus === "Doctor" ? (
               <div>
-                {profile ? <FetchDoc /> : ""}
+                {/* {profile ? <FetchDoc /> : ""}
                 {dashboard ? (
                   <div>
                     <FetchOthers />
@@ -604,7 +634,8 @@ function App() {
                   </div>
                 ) : (
                   ""
-                )}
+                )} */}
+                //doctorDashboard
               </div>
             ) : (
               ""
@@ -692,6 +723,11 @@ function App() {
       </div>
       <Footer />
     </div>
+
+    // <>
+    // <Login user={"Patient"} nameFun={getPatientName} addFun={getPatientAdd} />
+    //   {loginStatus ? "Succes" : ""}
+    // </>
   );
 }
 

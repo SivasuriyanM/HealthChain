@@ -11,6 +11,7 @@ export default function ContextProvider({ children }) {
     contract: null,
   });
   const [account, setAccount] = useState("None");
+  const [loginStatus, setLoginStatus] = useState("");
   useEffect(() => {
     const connectWallet = async () => {
       const contractAddress = "0x6006A04ABa557C552A5cA2A19f53a5A5bDaFC415";
@@ -48,7 +49,9 @@ export default function ContextProvider({ children }) {
     connectWallet();
   }, []);
   return (
-    <FetchContext.Provider value={{ state, account }}>
+    <FetchContext.Provider
+      value={{ state, account, loginStatus, setLoginStatus }}
+    >
       {children}
     </FetchContext.Provider>
   );
